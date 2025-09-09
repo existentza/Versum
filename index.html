@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="logo.jpg">
+    <title>Versum Tournament Maker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+       <div class="header">
+            <img style="border-radius: 20px;" src="logo.jpg" alt="Versum Logo">
+            <h1>⚡ VERSUM TOURNAMENT MAKER ⚡</h1>
+            <p>Crea tornei di freestyle epici</p>
+        </div>
+
+        <div class="tab-container">
+            <button class="tab-btn active" onclick="showTab('tournament')">Torneo</button>
+            <button class="tab-btn" onclick="showTab('themes')">Temi</button>
+            <button class="tab-btn" onclick="showTab('timer')">Timer</button>
+        </div>
+
+        <!-- Tournament Tab -->
+        <div id="tournament" class="tab-content active">
+            <div class="input-group">
+                <label for="participantName">Nome Partecipante:</label>
+                <input type="text" id="participantName" placeholder="Inserisci nome..." onkeypress="handleEnterKey(event)">
+            </div>
+            
+            <button class="btn" onclick="addParticipant()">Aggiungi Partecipante</button>
+            <button class="btn btn-secondary" onclick="clearParticipants()">Cancella Tutti</button>
+            <button class="btn btn-secondary" onclick="clearSavedData(); location.reload();" style="font-size: 12px; padding: 8px 15px;">🗑️ Cancella Salvataggio</button>
+            
+            <div class="participants-list" id="participantsList"></div>
+            
+            <button class="btn" onclick="startTournament()" id="startTournamentBtn">Inizia Torneo</button>
+            <button class="btn btn-secondary" onclick="resetTournament()" id="resetTournamentBtn" style="display: none;">Nuovo Torneo</button>
+            
+            <div class="tournament-status" id="tournamentStatus" style="display: none;">
+                <div class="phase-title" id="phaseTitle"></div>
+                <p id="phaseDescription"></p>
+            </div>
+
+            <button class="btn next-phase-btn" id="nextPhaseBtn" onclick="nextPhase()" style="display: none;">Prossima Fase</button>
+            
+            <div class="matches-container" id="matchesContainer"></div>
+
+            <div class="winner-announcement" id="winnerAnnouncement" style="display: none;"></div>
+        </div>
+
+        <!-- Themes Tab -->
+        <div id="themes" class="tab-content">
+            <button class="btn" onclick="generateTheme()">Genera Tema Casuale</button>
+            <div class="theme-display" id="themeDisplay">
+                Clicca per generare un tema casuale!
+            </div>
+        </div>
+
+        <!-- Timer Tab -->
+        <div id="timer" class="tab-content">
+            <div class="input-group">
+                <label for="timerMinutes">Minuti:</label>
+                <input type="number" id="timerMinutes" min="0" max="59" value="2">
+            </div>
+            
+            <div class="input-group">
+                <label for="timerSeconds">Secondi:</label>
+                <input type="number" id="timerSeconds" min="0" max="59" value="0">
+            </div>
+            
+            <div class="timer-display" id="timerDisplay">02:00</div>
+            
+            <div class="timer-controls">
+                <button class="btn" onclick="startTimer()">Start</button>
+                <button class="btn btn-secondary" onclick="pauseTimer()">Pausa</button>
+                <button class="btn btn-secondary" onclick="resetTimer()">Reset</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
